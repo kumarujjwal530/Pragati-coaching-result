@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pragati Coaching Centre | Student Result</title>
+<meta name="description" content="Pragati Coaching Centre student result portal.">
+<style>
+:root{--navy:#12315a;--blue:#1769aa;--gold:#f5b82e;--bg:#f3f6fb;--ink:#172338}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#12315a,#1769aa);color:white;padding:28px 16px 24px;text-align:center}
+.logo{width:62px;height:62px;border:2px solid #ffffffaa;border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;font-weight:800;font-size:25px;color:var(--gold)}
+h1{font-size:25px;margin:8px 0}header p{margin:6px 0;color:#e8f1ff}
+main{max-width:900px;margin:20px auto;padding:0 12px}
+.card{background:white;border-radius:15px;padding:18px;margin-bottom:16px;box-shadow:0 5px 18px #102b4b12;border:1px solid #e3eaf3}
+h2{font-size:20px;margin:0 0 14px;color:var(--navy)}
+.search{display:flex;gap:8px;flex-wrap:wrap}
+input,select,button{font-size:16px;border-radius:9px;padding:12px;border:1px solid #ccd6e3}
+input{flex:1;min-width:180px}button{background:var(--blue);color:white;border:0;font-weight:700;cursor:pointer}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{background:#e9f0f9;color:#17375e}.tab.active{background:var(--navy);color:white}
+.note{font-size:13px;color:#5a6b80;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid #e7edf4}th{background:#eef4fb;color:#17375e}
+.tablewrap{overflow-x:auto}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:#e1f6e9;color:#126b36;font-weight:bold}
+.empty{padding:18px;text-align:center;color:#64748b}
+footer{text-align:center;color:#68778c;padding:20px;font-size:13px}
+.hidden{display:none}
+@media(max-width:520px){h1{font-size:22px}.card{padding:14px}th,td{padding:9px 6px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">PCC</div>
+  <h1>Pragati Coaching Centre</h1>
+  <p>Student Result Portal</p>
+  <p>मेहनत • विश्वास • सफलता</p>
+</header>
+<main>
+  <section class="card">
+    <h2>विद्यार्थी का रिज़ल्ट खोजें</h2>
+    <div class="search">
+      <input id="query" placeholder="नाम या रोल नंबर लिखें" aria-label="नाम या रोल नंबर">
+      <button onclick="searchResult()">रिज़ल्ट देखें</button>
+      <button class="tab" onclick="resetSearch()">सभी रिज़ल्ट</button>
+    </div>
+    <p class="note">यह प्रारंभिक वेबसाइट है। सार्वजनिक करने से पहले सभी नाम और अंक जाँच लें।</p>
+  </section>
+  <section class="card">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('results',this)">रिज़ल्ट</button>
+      <button class="tab" onclick="showTab('fees',this)">फीस</button>
+      <button class="tab" onclick="showTab('attendance',this)">उपस्थिति</button>
+      <button class="tab" onclick="showTab('videos',this)">पढ़ाई के वीडियो</button>
+    </div>
+    <div id="results">
+      <h2>कक्षा 10 — संस्कृत परीक्षा</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>रोल</th><th>विद्यार्थी का नाम</th><th>अंक</th><th>कुल अंक</th><th>प्रतिशत</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+      <p class="note">नोट: यह उदाहरण डेटा है। Google Sheets से अपने-आप अपडेट होने की सुविधा अभी कनेक्ट नहीं है।</p>
+    </div>
+    <div id="fees" class="hidden"><h2>फीस जानकारी</h2><p>फीस की जानकारी के लिए कोचिंग सेंटर से संपर्क करें। व्यक्तिगत फीस विवरण सार्वजनिक वेबसाइट पर न डालें।</p></div>
+    <div id="attendance" class="hidden"><h2>उपस्थिति</h2><p>उपस्थिति रिकॉर्ड जोड़ने की सुविधा अभी तैयार नहीं है। विद्यार्थियों की निजी जानकारी सुरक्षित रखें।</p></div>
+    <div id="videos" class="hidden"><h2>पढ़ाई के वीडियो</h2><p>यहाँ शिक्षक के YouTube वीडियो के लिंक बाद में जोड़े जा सकते हैं।</p></div>
+  </section>
+</main>
+<footer>© Pragati Coaching Centre • Student Result Portal</footer>
+<script>
+const students = [
+["1","Radha Kumari",62,67],["2","Shalni Kumari",61,67],["3","Piyush Kumar",59,67],
+["4","Ankit Kumar",59,67],["5","Aaraadhya Rani",58,67],["6","Anand Kumar",57,67],
+["7","Muskan Kumari",57,67],["8","Amit Kumar",53,67],["9","Saroj Kumar",47,67],
+["10","Shubham Kumar",47,67],["11","Rishu Kumar",42,67],["12","Aditya Kumar",41,67],
+["13","Rupa Kumari",37,67]
+];
+function render(list){const body=document.getElementById('rows');body.innerHTML='';if(!list.length){body.innerHTML='<tr><td colspan="5" class="empty">कोई रिज़ल्ट नहीं मिला।</td></tr>';return}
+list.forEach(s=>{let tr=document.createElement('tr');[s[0],s[1],s[2],s[3],(s[2]/s[3]*100).toFixed(2)+'%'].forEach(v=>{let td=document.createElement('td');td.textContent=v;tr.appendChild(td)});body.appendChild(tr)})}
+function searchResult(){let q=document.getElementById('query').value.trim().toLowerCase();render(students.filter(s=>s[0].toLowerCase()===q||s[1].toLowerCase().includes(q)))}
+function resetSearch(){document.getElementById('query').value='';render(students)}
+function showTab(id,btn){['results','fees','attendance','videos'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+document.getElementById('query').addEventListener('keydown',e=>{if(e.key==='Enter')searchResult()});render(students);
+</script>
+</body></html>
